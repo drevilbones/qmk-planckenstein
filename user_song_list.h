@@ -173,7 +173,6 @@
   H__NOTE(_G4  ), \
   Q__NOTE(_EF4 ), \
   H__NOTE(_C4  ), \
-  W__NOTE(_REST), \
   QD_NOTE(_F4  ), \
   M__NOTE(_BF4, 128),
 

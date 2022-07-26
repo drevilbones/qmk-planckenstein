@@ -44,12 +44,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           KC_GESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_LOCK,  KC_NLCK,  KC_P7,    KC_P8,    KC_P9,    KC_PSLS,    
           KC_TAB,     KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_I,     KC_BSPC,  KC_P4,    KC_P5,    KC_P6,    KC_PAST,    
           KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_K,     MO(_MUS), KC_P1,    KC_P2,    KC_P3,    KC_PMNS,    
-          KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_SPC,  KC_LALT, KC_M,     MO(_ADJ), KC_P0,    KC_PDOT,  KC_PENT,  KC_PPLS),
-        [_ADJ] = LAYOUT_ortho_4x12( //keyboard functions
-          RESET,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_CALC,    KC_NO,    KC_NO,    KC_NO,    KC_NO,
-          KC_NO,    KC_NO,    RGB_VAI,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,      KC_NO,    KC_NO,    KC_NO,    KC_NO, 
-          KC_NO,    RGB_SPD,  RGB_VAD,  RGB_SPI,  KC_NO,    KC_NO,    KC_NO,    KC_NO,      KC_NO,    KC_NO,    KC_NO,    KC_NO, 
-          KC_NO,    KC_NO,    RGB_TOG,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRNS,    KC_NO,    KC_NO,    KC_NO,    KC_NO),
+          KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_SPC,  KC_LALT, KC_M,     TT(_ADJ), KC_P0,    KC_PDOT,  KC_ENT,   KC_PPLS),
+        [_ADJ] = LAYOUT_ortho_4x12( //extended keys
+          RESET,    KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_NO,    KC_CALC,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
+          KC_TRNS,  KC_TRNS,  KC_UP,    KC_TRNS, KC_TRNS, KC_TRNS, KC_NO,    KC_NO,    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, 
+          KC_TRNS,  KC_LEFT,  KC_DOWN,  KC_RIGHT,KC_TRNS, KC_TRNS, KC_NO,    KC_NO,    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, 
+          KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_NO,    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_PENT,  KC_TRNS),
         [_MUS] = LAYOUT_ortho_4x12( //dumb sfx to annoy everybody in the room
           AU_TOG,   KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    PLSO7,    PLSO8,    PLSO9,    KC_NO,
           KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    PLSO4,    PLSO5,    PLSO6,    PLSOM,
@@ -62,7 +62,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 float close_encounters_5_note[][2] = SONG(CLOSE_ENCOUNTERS_5_NOTE);
 float imperial_march[][2] = SONG(IMPERIAL_MARCH);
 float coin_sound[][2] = SONG(COIN_SOUND);
-float sonic_ring[][2] = SONG(SONIC_RING);
 float one_up_sound[][2] = SONG(ONE_UP_SOUND);
 float zelda_puzzle[][2] = SONG(ZELDA_PUZZLE);
 float zelda_treasure[][2] = SONG(ZELDA_TREASURE);
@@ -71,6 +70,7 @@ float mario_gameover[][2] = SONG(MARIO_GAMEOVER);
 float mario_mushroom[][2] = SONG(MARIO_MUSHROOM);
 float to_boldly_go[][2] = SONG(TO_BOLDLY_GO);
 float rick_roll[][2] = SONG(RICK_ROLL);
+float e1m1[][2] = SONG(E1M1_DOOM);
 float no_sound[][2] = SONG(NO_SOUND);
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -88,7 +88,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
     case PLSO4:
-        PLAY_SONG(sonic_ring);
+        PLAY_SONG(e1m1);
       return false;
       break;
     case PLSO5:
@@ -136,71 +136,6 @@ uint8_t last_muse_note = 0;
 uint16_t muse_counter = 0;
 uint8_t muse_offset = 70;
 uint16_t muse_tempo = 50;
-
-// bool encoder_update_user(uint8_t index, bool clockwise) {
-//   if (muse_mode) {
-//     if (IS_LAYER_ON(_RAISE)) {
-//       if (clockwise) {
-//         muse_offset++;
-//       } else {
-//         muse_offset--;
-//       }
-//     } else {
-//       if (clockwise) {
-//         muse_tempo+=1;
-//       } else {
-//         muse_tempo-=1;
-//       }
-//     }
-//   } else {
-//     if (clockwise) {
-//       #ifdef MOUSEKEY_ENABLE
-//         tap_code(KC_MS_WH_DOWN);
-//       #else
-//         tap_code(KC_PGDN);
-//       #endif
-//     } else {
-//       #ifdef MOUSEKEY_ENABLE
-//         tap_code(KC_MS_WH_UP);
-//       #else
-//         tap_code(KC_PGUP);
-//       #endif
-//     }
-//   }
-//     return true;
-// }
-
-// bool dip_switch_update_user(uint8_t index, bool active) {
-//     switch (index) {
-//         case 0: {
-// #ifdef AUDIO_ENABLE
-//             static bool play_sound = false;
-// #endif
-//             if (active) {
-// #ifdef AUDIO_ENABLE
-//                 if (play_sound) { PLAY_SONG(plover_song); }
-// #endif
-//                 layer_on(_ADJUST);
-//             } else {
-// #ifdef AUDIO_ENABLE
-//                 if (play_sound) { PLAY_SONG(plover_gb_song); }
-// #endif
-//                 layer_off(_ADJUST);
-//             }
-// #ifdef AUDIO_ENABLE
-//             play_sound = true;
-// #endif
-//             break;
-//         }
-//         case 1:
-//             if (active) {
-//                 muse_mode = true;
-//             } else {
-//                 muse_mode = false;
-//             }
-//     }
-//     return true;
-// }
 
 void matrix_scan_user(void) {
 #ifdef AUDIO_ENABLE

@@ -17,6 +17,7 @@
 #pragma once
 
 #define TAPPING_TERM 500
+#define TAPPING_TOGGLE 3
 
 #ifdef AUDIO_ENABLE
    # define STARTUP_SONG SONG(TO_BOLDLY_GO)
