@@ -1,4 +1,4 @@
-# fRaNk3nB0aRd
+# pL4n©K3nsTe1n
 
 A planck/rev6_drop keymap for https://github.com/qmk/qmk_firmware with the right 1/3rd being a numpad and the left 2/3rds being compact, easy access to common gaming keys. Has no standard layouts on any layer.
 
