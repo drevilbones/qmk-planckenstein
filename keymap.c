@@ -20,6 +20,7 @@
 enum planck_layers {
   _FRN,
   _ADJ,
+  _KBD,
   _MUS
 };
 
@@ -46,10 +47,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_K,     MO(_MUS), KC_P1,    KC_P2,    KC_P3,    KC_PMNS,    
           KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_SPC,  KC_LALT, KC_M,     TT(_ADJ), KC_P0,    KC_PDOT,  KC_ENT,   KC_PPLS),
         [_ADJ] = LAYOUT_ortho_4x12( //extended keys
-          RESET,    KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_NO,    KC_CALC,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
+          KC_TRNS,  KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_NO,    KC_CALC,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
           KC_TRNS,  KC_TRNS,  KC_UP,    KC_TRNS, KC_TRNS, KC_TRNS, KC_NO,    KC_NO,    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, 
-          KC_TRNS,  KC_LEFT,  KC_DOWN,  KC_RIGHT,KC_TRNS, KC_TRNS, KC_NO,    KC_NO,    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, 
+          KC_TRNS,  KC_LEFT,  KC_DOWN,  KC_RIGHT,KC_TRNS, KC_TRNS, KC_NO,    MO(_KBD), KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, 
           KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_NO,    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_PENT,  KC_TRNS),
+        [_KBD] = LAYOUT_ortho_4x12( //Internal keyboard functions
+          RESET,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,
+          KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,
+          KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRNS,  KC_NO,    KC_NO,    KC_NO,    KC_NO,
+          KC_NO,    KC_NO,    RGB_TOG,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRNS,  KC_NO,    KC_NO,    KC_NO,    KC_NO),          
         [_MUS] = LAYOUT_ortho_4x12( //dumb sfx to annoy everybody in the room
           AU_TOG,   KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    PLSO7,    PLSO8,    PLSO9,    KC_NO,
           KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    PLSO4,    PLSO5,    PLSO6,    PLSOM,
@@ -57,7 +63,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRNS,  PLSO0,    PLSTO,    KC_NO,    KC_NO)
 };
 
-
+        // [_TMP] = LAYOUT_ortho_4x12( //template
+        //   KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,
+        //   KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,
+        //   KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRNS,  KC_NO,    KC_NO,    KC_NO,    KC_NO,
+        //   KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRNS,  KC_NO,    KC_NO,    KC_NO,    KC_NO)
 
 float close_encounters_5_note[][2] = SONG(CLOSE_ENCOUNTERS_5_NOTE);
 float imperial_march[][2] = SONG(IMPERIAL_MARCH);
